@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    app: backend
+  ports:
+    - port: 8080 # porta q ele expoe pros outros pods
+      targetPort: 8080 # porta do container, por onde o trafego passa
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: cs-api
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MONGO_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: MONGO_INITDB_ROOT_USERNAME
+            - name: MONGO_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: MONGO_INITDB_ROOT_PASSWORD
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: SECRET_KEY
+            - name: MONGO_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-config
+                  key: MONGO_HOST
+            - name: MONGO_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-config
+                  key: MONGO_PORT
+            - name: MONGO_DBNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: backend-config
+                  key: MONGO_DBNAME
