@@ -1,4 +1,4 @@
-# cs-page-infra
+# 🚢 Site BCC - Infra k8s
 
 Este repositório contém a infraestrutura Kubernetes para o site do curso de Bacharelado em Ciência da Computação do IFPR Campus Pinhais.
 
