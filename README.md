@@ -10,6 +10,8 @@ https://kubernetes.io/docs/tasks/configmap-secret/managing-secret-using-config-f
 
 https://medium.com/@m.ibtisam.syed/deploying-mongodb-and-mongo-express-on-kubernetes-using-minikube-including-secret-configmap-6cc994933ff2
 
+https://stackoverflow.com/questions/70685863/kubernetes-and-mongo-pv-pvc
+
 https://www.mongodb.com/community/forums/t/mongodb-connection-uri/248220
 
 https://dev-mus.medium.com/how-to-deploy-a-vite-react-app-using-nginx-server-d7190a29d8cd
